@@ -5,9 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JSCraft</title>
+    <style>
+        body {
+            overflow: hidden;
+            margin: 0px;
+        }
+    </style>
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "./modules/three.module.js",
+            "PointerLockControls": "./modules/PointerLockControls.js",
+            "WorldGenerator": "./modules/WorldGenerator.js",
+            "ds-heightmap": "./modules/ds-heightmap.js"
+          }
+        }
+    </script>
 </head>
 <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.149.0/three.min.js"></script>
-    <script src="./main.js"></script>
+    <script type="module" src="main.js"></script>
 </body>
 </html>
