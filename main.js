@@ -1,24 +1,29 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import { Scene, Engine, FreeCamera, Vector3, MeshBuilder, HemisphericLight } from "babylonjs";
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+const canvas = document.getElementById("game");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-setupCounter(document.querySelector('#counter'))
+
+const engine = new Engine(canvas, true, {preserveDrawingBuffer: true, stencil: true});
+
+const createScene = () => {
+  const scene = new Scene(engine);
+  const camera = new FreeCamera('camera1', new Vector3(0, 5, -10), scene);
+  camera.setTarget(Vector3.Zero())
+  camera.attachControl(canvas, false);
+  const lighting = new HemisphericLight('light1', new Vector3(0, 1, 0), scene)
+  const sphere = MeshBuilder.CreateBox('box1', { width: 2, height: 2 })
+  sphere.position.y = 1;
+  return scene;
+}
+
+const scene = createScene();
+
+engine.runRenderLoop(() => {
+  scene.render();
+})
+
+window.addEventListener("resize", () => {
+  engine.resize();
+})
