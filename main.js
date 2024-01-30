@@ -1,4 +1,4 @@
-import { Scene, Engine, FreeCamera, Vector3, MeshBuilder, HemisphericLight } from "babylonjs";
+import { Scene, Engine, FreeCamera, Vector3, MeshBuilder, HemisphericLight } from "npm:babylonjs";
 
 const canvas = document.getElementById("game");
 canvas.width = window.innerWidth;
